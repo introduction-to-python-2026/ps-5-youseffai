@@ -1,12 +1,43 @@
 
 
 
-def split_before_uppercases(formula):
-    pass  # replace the pass with your code
+def split_at_first_digit(formula):
+ first_digit_index = -1
+ for i, char in enumerate(formula):
+  if char.isdigit():
+    first_digit_index = i
+    break
+ if first_digit_index != -1:
+  prefix = formula[:first_digit_index]
+  number_str = formula[first_digit_index:]
+  number = int(number_str)
+  return (prefix, number)
+ else:
+  return (formula, 1)
 
-def split_at_digit(formula):
-    pass  # replace the pass with your code
+def split_before_each_uppercases(text):
 
+  if not text:
+    return []
+
+  segments = []
+  current_segment = ""
+
+  for char in text:
+
+    if char.isupper():
+
+      if current_segment:
+        segments.append(current_segment)
+
+      current_segment = char
+    else:
+      current_segment += char
+  
+  if current_segment:
+    segments.append(current_segment)
+    
+  return segments
 def count_atoms_in_molecule(molecular_formula):
     """Takes a molecular formula (string) and returns a dictionary of atom counts.  
     Example: 'H2O' → {'H': 2, 'O': 1}"""
